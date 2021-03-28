@@ -1,38 +1,39 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 /** @type {import('webpack').Configuration} */
 module.exports = {
     mode: 'development',
-    entry: './src/index.js',
+    entry: './src/index',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'source.bundle.js'
+        filename: 'js/main.js'
     },
     resolve: {
-        extensions: ['.js']
+        extensions: ['.tsx', '.ts', '.js', 'jsx'],
     },
-
+    
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.(ts|js)x?$/,
+                use: 'babel-loader', // Transpiling TSX to JS
                 exclude: /node_modules/,
-                use: 'babel-loader'
-            }
+              },        
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'src/public/index.html'),
-            filename: 'app.html',
-            
-        })
+        }),
+        new ForkTsCheckerWebpackPlugin() // Type checking for TS
     ],
+    devtool: 'source-map',
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
         compress: true,
-        port: 9000,
+        port: 3000,
         open: true
     }
 }
