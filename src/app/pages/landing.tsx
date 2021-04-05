@@ -1,14 +1,21 @@
 import * as React from "react";
-import Todos from "../containers/Todos";
-import Coordinate from '../containers/Coordinates';
+import RSMap from '../components/RSMap';
+
+import {
+  ComposableMap,
+  Geographies,
+  Geography,
+  ZoomableGroup,
+  ZoomableGroupProps,
+  ComposableMapProps
+
+} from "react-simple-maps";
 
 const Landing = () => {
 
   return (
     <>
-          <Todos />
-          <hr />
-          <Coordinate />
+      <RSMap />
     </>
   );
 };
