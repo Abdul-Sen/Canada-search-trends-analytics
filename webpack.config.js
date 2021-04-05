@@ -20,7 +20,12 @@ module.exports = {
                 test: /\.(ts|js)x?$/,
                 use: 'babel-loader', // Transpiling TSX to JS
                 exclude: /node_modules/,
-              },        
+            },
+            {
+                test: /\.(geojson|json)$/,
+                use: 'json-loader',
+                exclude: /node_modules/,
+            }
         ]
     },
     plugins: [
