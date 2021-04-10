@@ -1,0 +1,16 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    padding: 16px;
+  }
+  
+  .svg { grid-area: 1 / 1 / 6 / 8; }
+  
+  .accordian { grid-area: 1 / 1 / 4 / 3; }
+  
+  .toggleTheme { grid-area: 1 / 7 / 2 / 8; }
+  
+  .dateCue { grid-area: 5 / 6 / 6 / 8; }
+  
