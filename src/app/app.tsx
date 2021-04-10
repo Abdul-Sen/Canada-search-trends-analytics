@@ -1,17 +1,17 @@
-import React from 'react';
-import { AppContextProvider } from './store/AppContextProvider';
+import React, { useContext } from 'react';
 import Landing from './pages/landing';
-
+import { ThemeContext } from './context/ThemeContext';
 
 const App = () => {
+  const { theme } = useContext(ThemeContext) as ThemeContextType;
 
   return (
-        <AppContextProvider>
-        <main className="App">
-            <Landing />
-        </main>
-        </AppContextProvider>
-  )
+    <>
+      <main id="App" className={theme.AppTheme == "Light" ? "theme-light" : "theme-dark"}>
+        <Landing />
+      </main>
+    </>
+  );
 }
 
 export default App;
