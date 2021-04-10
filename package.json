@@ -23,7 +23,6 @@
     "@types/react-simple-maps": "^1.0.3",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.2.0",
-    "esbuild-loader": "^2.11.0",
     "fork-ts-checker-webpack-plugin": "^6.2.0",
     "html-webpack-plugin": "^5.3.1",
     "husky": "^5.2.0",
@@ -40,6 +39,7 @@
     "@types/geojson": "^7946.0.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.2.0",
     "react-simple-maps": "^2.3.0"
   }
 }
