@@ -1,6 +1,6 @@
 $themes: (
   light: (
-    backgroundColor: #fff,
+    backgroundColor: #f5fffa,
     rootBackground: #ffc9c9,
     textColor: #181818,
     buttonTextColor: #408bbd,
@@ -8,6 +8,10 @@ $themes: (
     buttonTextHoverColor: #61b0e7,
     buttonColor: #fff,
     buttonBorder: 2px solid #fff,
+    mapFill: #c5efff,
+    graidentOne: rgba(255,255,255,1) 0%,
+    graidentTwo: rgba(245,255,250,1) 33%,
+    graidentThree: rgba(221,255,238,1) 100%
   ),
   dark: (
     backgroundColor: #949494,
@@ -18,5 +22,9 @@ $themes: (
     buttonTextHoverColor: #ddd,
     buttonColor: #333,
     buttonBorder: 1px solid #aaa,
-  ),
+    mapFill: #fff,
+    graidentOne: rgba(136, 136, 136, 1) 0%,
+    graidentTwo: rgba(148, 148, 148, 1) 50%,
+    graidentThree: rgba(175, 175, 175, 1) 100%
+    ),
 );
