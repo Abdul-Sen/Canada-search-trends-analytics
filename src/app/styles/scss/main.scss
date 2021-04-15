@@ -4,6 +4,7 @@
 // components
 @import "./components/RSMap.scss";
 @import "./components/ToggleTheme.scss";
+@import "./components/Accordian.scss";
 
 // theme
 @import "./abstract/themes";
@@ -11,14 +12,3 @@
 
 // Layouts
 @import "./pages/layout.scss";
-
-
-
-// only for root we are doing this, for all other components we will linclude the themifiy
-.theme-light {
-    background-color: rgb(255, 255, 255);
-}
-
-.theme-dark {
-    background-color: #949494
-}
