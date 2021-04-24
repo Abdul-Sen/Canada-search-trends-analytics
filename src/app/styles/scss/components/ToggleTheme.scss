@@ -30,7 +30,9 @@
     box-sizing: border-box;
     filter: drop-shadow(1px 0px 10px rgba(0, 0, 0, 0.35));
     backdrop-filter: blur(15px);
-
+    &:active {
+        transform: scale(0.9,0.9);
+    }
     // @include themify($themes) {
     //     color: themed("textColor");
     //     background-color: themed("backgroundColor");
