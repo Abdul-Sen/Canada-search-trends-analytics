@@ -5,8 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack serve",
-    "build": "webpack",
+    "dev": "webpack serve --open --config webpack.dev.js",
+    "prod": "webpack --config webpack.prod.js",
     "tsc": "tsc"
   },
   "author": "",
@@ -34,7 +34,8 @@
     "typescript": "^4.2.3",
     "webpack": "^5.30.0",
     "webpack-cli": "^4.5.0",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-dev-server": "^3.11.2",
+    "webpack-merge": "^5.7.3"
   },
   "dependencies": {
     "@types/geojson": "^7946.0.7",
