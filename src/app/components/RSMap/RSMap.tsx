@@ -11,7 +11,7 @@ import {
 } from "react-simple-maps";
 
 import * as data from './canadaTested.geojson';
-
+import {default as dates} from '../../../public/content/dates.json';
 
 const zoomProps: ZoomableGroupProps = {
   center: [-100, 50],
@@ -25,6 +25,8 @@ const composableMapProps: ComposableMapProps = {
 }
 
 const RSMap = () => {
+
+  React.useEffect(()=> {console.log(dates)}, []);
 
 // RSM props
 const geoStyle = {
