@@ -1,17 +1,18 @@
 import * as React from "react";
-
+import {Province, DateBucket, DateQuery} from '../../typings/DateBucket';
 import {
   ComposableMap,
   Geographies,
   Geography,
   ZoomableGroup,
   ZoomableGroupProps,
-  ComposableMapProps
-
+  ComposableMapProps,
+  Marker,
+  Point
 } from "react-simple-maps";
 
 import * as data from './canadaTested.geojson';
-import {default as dates} from '../../../public/content/dates.json';
+const dates: Array<DateBucket> = require('../../../public/content/dates.json');
 
 const zoomProps: ZoomableGroupProps = {
   center: [-100, 50],
@@ -25,39 +26,73 @@ const composableMapProps: ComposableMapProps = {
 }
 
 const RSMap = () => {
+  // RSM props
+  const geoStyle = {
+    default: {
+      outline: "none",
+    },
+    hover: {
+      fill: "#F53",
+      outline: "none"
+    },
+    pressed: {
+      fill: "#E42",
+      outline: "none"
+    }
+  };
 
-  React.useEffect(()=> {console.log(dates)}, []);
+  const [firstDate, setFirstDate] = React.useState(dates[0]);
 
-// RSM props
-const geoStyle = {
-  default: {
-    outline: "none",
-  },
-  hover: {
-    fill: "#F53",
-    outline: "none"
-  },
-  pressed: {
-    fill: "#E42",
-    outline: "none"
+  const MarkerCoordinate = (province: Province) : Point =>  {
+    switch (province) {
+      case Province.AB:
+        return [-114.856456, 56.448863];
+      case Province.BC:
+        return [-125.272325, 55.177216];
+      case Province.MA:
+      return [-98.057204, 55.971268];
+      case Province.NB:
+        return [-66.398948, 46.438051];
+      case Province.NL:
+        return [-62.627126, 53.792699];
+      case Province.ON:
+        return [-88.087716, 52.155468];
+      case Province.QC:
+        return [-73.069233, 50.167852];
+      case Province.SK:
+        return [-105.843923, 55.871736];
+      default:
+        return [0,0];
+    }
   }
-};
+  
+  const RenderGeographies = ({ geographies }: any) => {
+
+    return geographies.map((geo: any) => {
+    
+    return <Geography key={geo.rsmKey} name={geo.properties.name} geography={geo} style={{ ...geoStyle }} className="geography" >        
+      </Geography>
+    })
+  }
   return (
     <>
-      <div style={{ maxWidth: "100%", height:"100%" }}>
-        <ComposableMap {...composableMapProps} style={{ width: "100%", height: "100%"}}>
-          {/* centering and zooming adjustments */}
+      <div style={{ maxWidth: "100%", height: "100%" }}>
+        <ComposableMap {...composableMapProps} style={{ width: "100%", height: "100%" }}>
           <ZoomableGroup {...zoomProps}>
-            <Geographies geography={data} stroke="#949494" strokeWidth={0.2}> 
-              {({ geographies }) =>
-                geographies.map((geo) => (
-                  <Geography key={geo.rsmKey} geography={geo}
-                    style={{ ...geoStyle }}
-                    className="geography"
-                  />
-                ))
-              }
+            <Geographies geography={data} stroke="#949494" strokeWidth={0.2}>
+              {RenderGeographies}
             </Geographies>
+            <React.Fragment>
+              {firstDate.data.map((proviceData, index) => {               
+                return (
+                  <Marker coordinates={MarkerCoordinate(proviceData.province)} fill="#777" key={index}>
+                  <text textAnchor="middle" fill="DarkBlue" fontSize={3}>
+                    {proviceData.query}
+                  </text>
+                </Marker>
+                )
+              })}
+            </React.Fragment>
           </ZoomableGroup>
         </ComposableMap>
       </div>

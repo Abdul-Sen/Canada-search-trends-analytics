@@ -6,7 +6,7 @@ module.exports = {
   entry: './src/index',
 
   resolve: {
-    extensions: ['.tsx', '.ts', '.js', 'jsx'],
+    extensions: ['.tsx', '.ts', '.js', 'jsx', '.d.ts'],
 },
 
 module: {
@@ -31,7 +31,8 @@ module: {
               // Compiles Sass to CSS
               "sass-loader",
             ],
-          }        
+            exclude: /node_modules/,
+          }
     ]
 },
   plugins: [
