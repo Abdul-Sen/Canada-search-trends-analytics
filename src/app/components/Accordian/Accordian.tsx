@@ -4,6 +4,8 @@ import { AccordianContext } from '../../context/AccordianContext'
 import { IoIosArrowRoundBack, IoIosArrowRoundForward } from 'react-icons/io';
 import { RiPauseCircleLine, RiPlayCircleLine } from 'react-icons/ri';
 import Select, { ActionMeta, OptionsType, OptionTypeBase, ValueType } from 'react-select';  
+import { useState } from "react";
+import { useEffect } from "react";
 
 const options: any[] = [
     { value: 'AB', label: 'Alberta'},
@@ -20,6 +22,61 @@ const options: any[] = [
 const Accordian = () => {
 
     const { accordianState, updateMinimize, updateAccordian } = useContext<AccordianContextType>(AccordianContext);
+    const [counterTicks, setCounterTicks] = useState(0);
+
+    const updatePlayState = () => {
+        if(accordianState.play == false)
+        {
+           let noTimesToUpdateAccordianState: number = calcDays(accordianState.from, accordianState.to);
+           setCounterTicks(() => noTimesToUpdateAccordianState);
+           tickInterval();
+        }
+        else {
+            // end counter
+            setCounterTicks(() => 1);
+        }
+
+        updateAccordian({
+            ...accordianState,
+            play: !accordianState.play
+        });
+    }
+
+    const tickInterval = ()=>{
+        if(counterTicks > 0)
+        {
+            setTimeout(() => {
+                decreaseCountTick();
+            }, 1000/accordianState.playSpeed);
+        }
+    }
+
+    // decreases counter to 0, where the counter stops
+    const decreaseCountTick = ()=>{
+        setCounterTicks((currentVal) => currentVal - 1);
+    }
+
+    const calculateCurrentDate = () : Date => {
+        let calculatedDate: Date | null = null;
+        counterTicks
+        // TODO - PLS COMPLETE ME
+        return new Date();
+    }
+    useEffect(()=>{
+        tickInterval();
+        updateAccordian({
+            ...accordianState,
+            currentDate: calculateCurrentDate()
+        } as IAccordian);
+        console.log(counterTicks);
+    },[counterTicks]);
+
+    const calcDays = (from: Date, to: Date) : number => {
+      let temp: number = to.getTime() - from.getTime();
+      
+      temp =  temp/(1000* 60 * 60 * 24)
+      return temp;
+    }
 
     React.useEffect(() => {
         console.log(accordianState);
@@ -35,9 +92,21 @@ const Accordian = () => {
         if (e.target.name == "visibleDateCue") {
             e.target.value == "checked" ? e.target.value = true : e.target.value = false;
         }
+        console.log(new Date(e.target.value));
+        let payload :any = e.target.value;
+        switch(e.target.name)
+        {
+            case "from":
+                payload = new Date(e.target.value);
+                break;
+            case "to":
+                payload = new Date(e.target.value);
+                break;
+        }
+
         updateAccordian({
             ...accordianState,
-            [e.target.name]: e.target.value
+            [e.target.name]: payload
         });
     }
 
@@ -48,14 +117,6 @@ const Accordian = () => {
             province: value
         });
     }
-
-    const updatePlayState = () => {
-        updateAccordian({
-            ...accordianState,
-            play: !accordianState.play
-        });
-    }
-
     return (
         <>
             <div className="accrordian-box">
@@ -72,11 +133,11 @@ const Accordian = () => {
                     <div id="dateRange">
                         <div id="from" style={{ display: "inline", }} >
                             <p style={{ display: "inline" }}>From</p>  &nbsp;
-                        <input name="from" onChange={handleFormUpdate} type="date" value={accordianState.from} min="2020-01-01" max="2020-12-31" />
+                        <input name="from" onChange={handleFormUpdate} type="date" value={accordianState.from.toISOString().split('T')[0]} min="2020-01-01" max="2020-12-31" />
                         </div>
                         <div id="to" style={{ display: "inline", paddingLeft: "30px" }}>
                             <p style={{ display: "inline" }}>To</p> &nbsp;
-                        <input name="to" onChange={handleFormUpdate} type="date" value={accordianState.to} min="2020-01-01" max="2020-12-31" />
+                        <input name="to" onChange={handleFormUpdate} type="date" value={accordianState.to.toISOString().split('T')[0]} min="2020-01-01" max="2020-12-31" />
                         </div>
                     </div>
                     <div id="province">
