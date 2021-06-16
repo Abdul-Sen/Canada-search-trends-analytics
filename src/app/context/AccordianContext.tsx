@@ -2,12 +2,13 @@ import * as React from 'react';
 
 const DEFAULT_ACCORDIAN: IAccordian = {
     minimized: false,
-    from: "2020-01-01",
-    to:"2020-12-31",
+    from: new Date("2020-01-01"),
+    to: new Date("2020-12-31"),
     play: false,
     playSpeed: 1.25,
     province: [],
-    visibleDateCue: true
+    visibleDateCue: true,
+    currentDate: new Date()
 };
 
 export const AccordianContext = React.createContext< AccordianContextType>(undefined!);
@@ -24,7 +25,6 @@ const AccordianProvider: React.FC<React.ReactNode> = ( { children } ) => {
     }
 
     const updateAccordian = (newState:IAccordian)=> {
-        console.log(newState);
         setAccordianState(newState);
     }
 
