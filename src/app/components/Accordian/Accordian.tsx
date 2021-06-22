@@ -21,66 +21,37 @@ const options: any[] = [
 
 const Accordian = () => {
 
-    const { accordianState, updateMinimize, updateAccordian } = useContext<AccordianContextType>(AccordianContext);
-    const [counterTicks, setCounterTicks] = useState(0);
+    const { accordianState, updateMinimize, handlePlay, updateAccordian, getAccordianState } = useContext<AccordianContextType>(AccordianContext);
 
     const updatePlayState = () => {
-        if(accordianState.play == false)
-        {
-           let noTimesToUpdateAccordianState: number = calcDays(accordianState.from, accordianState.to);
-           setCounterTicks(() => noTimesToUpdateAccordianState);
-           tickInterval();
-        }
-        else {
-            // end counter
-            setCounterTicks(() => 1);
-        }
-
-        updateAccordian({
+        handlePlay({
             ...accordianState,
             play: !accordianState.play
         });
     }
 
     const tickInterval = ()=>{
-        if(counterTicks > 0)
+        if(getAccordianState().counterTicks > 0)
         {
             setTimeout(() => {
-                decreaseCountTick();
-            }, 1000/accordianState.playSpeed);
+                decreaseCountTick(getAccordianState());
+            }, 1000/getAccordianState().playSpeed);
         }
     }
 
-    // decreases counter to 0, where the counter stops
-    const decreaseCountTick = ()=>{
-        setCounterTicks((currentVal) => currentVal - 1);
-    }
-
-    const calculateCurrentDate = () : Date => {
-        let calculatedDate: Date | null = null;
-        counterTicks
-        // TODO - PLS COMPLETE ME
-        return new Date();
-    }
-    useEffect(()=>{
+    useEffect(()=> {
         tickInterval();
+    },[accordianState.counterTicks]);
+
+
+
+    // decreases counter to 0, where the counter stops
+    const decreaseCountTick = (accordian: IAccordian)=>{
         updateAccordian({
-            ...accordianState,
-            currentDate: calculateCurrentDate()
-        } as IAccordian);
-        console.log(counterTicks);
-    },[counterTicks]);
-
-    const calcDays = (from: Date, to: Date) : number => {
-      let temp: number = to.getTime() - from.getTime();
-      
-      temp =  temp/(1000* 60 * 60 * 24)
-      return temp;
+            ...accordian,
+            counterTicks: accordian.counterTicks - 1,
+        });
     }
-
-    React.useEffect(() => {
-        console.log(accordianState);
-    }, [accordianState])
 
     const handleCollapse = () => {
         console.log("handleCollapse called");
@@ -92,7 +63,7 @@ const Accordian = () => {
         if (e.target.name == "visibleDateCue") {
             e.target.value == "checked" ? e.target.value = true : e.target.value = false;
         }
-        console.log(new Date(e.target.value));
+
         let payload :any = e.target.value;
         switch(e.target.name)
         {

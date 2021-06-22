@@ -7,12 +7,16 @@ interface IAccordian {
     province: List<string>,
     playSpeed: number,
     play: boolean,
-    currentDate: Date
+    currentDate: Date,
+    counterTicks: number,
+    counterTwo: number
 };
 
 
 type AccordianContextType = {
     accordianState: IAccordian,
     updateMinimize: (minimize: bool) => void,
-    updateAccordian: (newState: IAccordian)=> void,
+    handlePlay: (newState: IAccordian)=> void,
+    updateAccordian: (newState: IAccordian) => void,
+    getAccordianState: () => IAccordian
 }

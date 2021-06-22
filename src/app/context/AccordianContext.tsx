@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { FC,useRef } from 'react';
 
 const DEFAULT_ACCORDIAN: IAccordian = {
     minimized: false,
@@ -8,15 +9,20 @@ const DEFAULT_ACCORDIAN: IAccordian = {
     playSpeed: 1.25,
     province: [],
     visibleDateCue: true,
-    currentDate: new Date()
+    currentDate: new Date(),
+    counterTicks: 0,
+    counterTwo: 0
 };
 
-export const AccordianContext = React.createContext< AccordianContextType>(undefined!);
+export const AccordianContext = React.createContext<AccordianContextType>(undefined!);
 
-const AccordianProvider: React.FC<React.ReactNode> = ( { children } ) => {
+const AccordianProvider: FC<React.ReactNode> = ( { children } ) => {
     
     const [accordianState, setAccordianState] = React.useState<IAccordian>(DEFAULT_ACCORDIAN);
     
+    const countRef = useRef(accordianState);
+    countRef.current = accordianState;
+
     const updateMinimize = ()=> {
         setAccordianState( (prevState: IAccordian) => ({
             ...prevState,
@@ -24,12 +30,56 @@ const AccordianProvider: React.FC<React.ReactNode> = ( { children } ) => {
         }));
     }
 
-    const updateAccordian = (newState:IAccordian)=> {
-        setAccordianState(newState);
+    const calcDays = (from: Date, to: Date) : number => {
+        let temp: number = to.getTime() - from.getTime();
+        temp =  temp/(1000* 60 * 60 * 24)
+        return temp;
+      }
+
+    const handlePlay = (newState: IAccordian) => {
+        setAccordianState((prevAccordianState) => {
+
+          let nextAccordianState;
+
+          if (!prevAccordianState.play) {
+            const noTimesToUpdateAccordianState: number = calcDays(
+                newState.from,
+                newState.to
+            );
+
+            nextAccordianState = {
+              ...prevAccordianState,
+              counterTicks: noTimesToUpdateAccordianState,
+              counterTwo: noTimesToUpdateAccordianState,
+              play: true
+            };
+
+          } else {
+            nextAccordianState = {
+              ...prevAccordianState,
+              counterTicks: 0,
+              counterTwo: 0,
+              play: !prevAccordianState.play,
+            };
+          }
+
+          return nextAccordianState;
+        });
+      };
+
+      const updateAccordian = (newState:IAccordian)=> {
+        setAccordianState((prevState) : IAccordian => ({
+            ...prevState,
+            ...newState
+        }));
+    }
+      
+    const getAccordianState = () : IAccordian => {
+      return countRef.current;
     }
 
     return (
-        <AccordianContext.Provider value={{ accordianState, updateMinimize, updateAccordian }}>
+        <AccordianContext.Provider value={{ accordianState, updateMinimize, handlePlay, updateAccordian, getAccordianState }}>
             {children}
         </AccordianContext.Provider>
 
