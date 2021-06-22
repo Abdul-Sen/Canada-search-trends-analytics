@@ -9,7 +9,7 @@ const DEFAULT_ACCORDIAN: IAccordian = {
     playSpeed: 1.25,
     province: [],
     visibleDateCue: true,
-    currentDate: new Date(),
+    currentDate: new Date("2020-01-01"),
     counterTicks: 0,
     counterTwo: 0
 };
@@ -51,7 +51,8 @@ const AccordianProvider: FC<React.ReactNode> = ( { children } ) => {
               ...prevAccordianState,
               counterTicks: noTimesToUpdateAccordianState,
               counterTwo: noTimesToUpdateAccordianState,
-              play: true
+              play: true,
+              currentDate: prevAccordianState.currentDate
             };
 
           } else {

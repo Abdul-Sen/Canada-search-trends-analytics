@@ -50,6 +50,7 @@ const Accordian = () => {
         updateAccordian({
             ...accordian,
             counterTicks: accordian.counterTicks - 1,
+            currentDate: new Date(accordian.currentDate.setHours(24))
         });
     }
 
@@ -63,7 +64,7 @@ const Accordian = () => {
         if (e.target.name == "visibleDateCue") {
             e.target.value == "checked" ? e.target.value = true : e.target.value = false;
         }
-
+        
         let payload :any = e.target.value;
         switch(e.target.name)
         {
