@@ -1,5 +1,6 @@
 import * as React from "react";
 import {Province, DateBucket, DateQuery} from '../../typings/DateBucket';
+import {AccordianContext} from '../../context/AccordianContext';
 import {
   ComposableMap,
   Geographies,
@@ -41,8 +42,23 @@ const RSMap = () => {
     }
   };
 
-  const [firstDate, setFirstDate] = React.useState(dates[0]);
+  // get the state context for accordian state
+  const {accordianState}  = React.useContext<AccordianContextType>(AccordianContext)
 
+  React.useEffect(() => {
+    renderUpdate(dates.length - accordianState.counterTicks);
+  },[accordianState.counterTicks]);
+
+  const renderUpdate = (index: number)=>{
+    if(dates[index] != undefined)
+    {
+      setCurrentDateBucket(() => dates[index]);
+    }
+  }
+
+  const [currentDateBucket, setCurrentDateBucket] = React.useState(dates[0]);
+
+  // Todo - dis needs to be optimized
   const MarkerCoordinate = (province: Province) : Point =>  {
     switch (province) {
       case Province.AB:
@@ -50,7 +66,7 @@ const RSMap = () => {
       case Province.BC:
         return [-125.272325, 55.177216];
       case Province.MA:
-      return [-98.057204, 55.971268];
+        return [-98.057204, 55.971268];
       case Province.NB:
         return [-66.398948, 46.438051];
       case Province.NL:
@@ -81,9 +97,10 @@ const RSMap = () => {
           <ZoomableGroup {...zoomProps}>
             <Geographies geography={data} stroke="#949494" strokeWidth={0.2}>
               {RenderGeographies}
+              
             </Geographies>
-            <React.Fragment>
-              {firstDate.data.map((proviceData, index) => {               
+            {currentDateBucket.data.map((proviceData, index) => {
+                
                 return (
                   <Marker coordinates={MarkerCoordinate(proviceData.province)} fill="#777" key={index}>
                   <text textAnchor="middle" fill="DarkBlue" fontSize={3}>
@@ -92,6 +109,8 @@ const RSMap = () => {
                 </Marker>
                 )
               })}
+            <React.Fragment>
+              
             </React.Fragment>
           </ZoomableGroup>
         </ComposableMap>
