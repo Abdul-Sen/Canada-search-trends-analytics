@@ -52,7 +52,7 @@ const AccordianProvider: FC<React.ReactNode> = ( { children } ) => {
               counterTicks: noTimesToUpdateAccordianState,
               counterTwo: noTimesToUpdateAccordianState,
               play: true,
-              currentDate: prevAccordianState.currentDate
+              currentDate: newState.from
             };
 
           } else {
