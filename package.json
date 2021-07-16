@@ -1,12 +1,15 @@
 {
   "name": "geo-chart-ts",
+  "homepage": "https://abdul-sen.github.io/Canada-search-trends-analytics",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack serve",
-    "build": "webpack"
+    "dev": "webpack serve --open --config webpack.dev.js",
+    "prod": "webpack --config webpack.prod.js",
+    "deploy": "gh-pages -d dist",
+    "tsc": "tsc"
   },
   "author": "",
   "license": "ISC",
@@ -14,17 +17,35 @@
     "@babel/core": "^7.13.10",
     "@babel/preset-env": "^7.13.12",
     "@babel/preset-react": "^7.12.13",
+    "@babel/preset-typescript": "^7.13.0",
     "@commitlint/cli": "^12.0.1",
     "@commitlint/config-conventional": "^12.0.1",
+    "@types/react": "^17.0.3",
+    "@types/react-dom": "^17.0.3",
+    "@types/react-select": "^4.0.15",
+    "@types/react-simple-maps": "^1.0.3",
     "babel-loader": "^8.2.2",
+    "css-loader": "^5.2.0",
+    "fork-ts-checker-webpack-plugin": "^6.2.0",
+    "gh-pages": "^3.2.0",
     "html-webpack-plugin": "^5.3.1",
     "husky": "^5.2.0",
-    "webpack": "^5.28.0",
+    "json-loader": "^0.5.7",
+    "sass": "^1.32.8",
+    "sass-loader": "^11.0.1",
+    "style-loader": "^2.0.0",
+    "typescript": "^4.2.3",
+    "webpack": "^5.30.0",
     "webpack-cli": "^4.5.0",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-dev-server": "^3.11.2",
+    "webpack-merge": "^5.7.3"
   },
   "dependencies": {
+    "@types/geojson": "^7946.0.7",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.2.0",
+    "react-select": "^4.3.0",
+    "react-simple-maps": "^2.3.0"
   }
 }

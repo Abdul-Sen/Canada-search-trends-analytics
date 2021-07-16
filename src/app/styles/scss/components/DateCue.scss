@@ -1,0 +1,22 @@
+@import "../abstract/themes";
+@import "../abstract/mixins";
+@import "../abstract/variables";
+
+#DateCueContainer {
+    background-color: transparent;
+    border-radius: 10px;
+    border: 1px solid rgb(233, 233, 233);
+    box-shadow: 0 2px 2.2px rgba(243, 248, 251, 0.034), 0 1px 5.3px rgba(0, 0, 0, 0.048), 0 1px 10px rgba(0, 0, 0, 0.06),
+    0 1px 17.9px rgba(0, 0, 0, 0.072), 0 1px 33.4px rgba(0, 0, 0, 0.086);
+
+    backdrop-filter: blur(15px);
+    text-align: center;
+}
+
+#DateCueValue {
+    font-size: 3rem;
+    font-family: $roboto-slab;
+    @include themify($themes) {
+        color: themed("textColor");
+    }
+}

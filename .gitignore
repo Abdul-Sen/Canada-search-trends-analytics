@@ -4,3 +4,6 @@ package-lock.json
 
 # Builds
 /dist
+
+# IDE generated files
+.vscode

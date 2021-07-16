@@ -1,0 +1,28 @@
+@import "../abstract/themes";
+@import "../abstract/mixins";
+@import "../abstract/variables";
+
+#mapView {
+    
+    overflow: hidden;
+     @include themify($themes) {
+        background: themed("backgroundGradient");
+        background: linear-gradient(
+            125deg,
+            themed("graidentOne"),
+            themed("graidentTwo"),
+            themed("graidentThree")
+        );
+    }
+    @media only screen and (max-width: $breakpoint-tablet) {
+        border-radius: 16px;
+        margin: 12px;
+      }
+    
+}
+
+.geography {
+    @include themify($themes) {
+        fill: themed("mapFill");
+    }
+}
