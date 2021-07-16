@@ -8,7 +8,6 @@ const ThemeProvider: React.FC<React.ReactNode> = ({ children }) => {
     const [theme, setTheme] = React.useState<ITheme>(DEFAULT_THEME);
 
     const updateTheme = (newTheme: ITheme) => {
-        console.log(theme.AppTheme);
         setTheme(newTheme);
     };
     

@@ -9,7 +9,6 @@ const Coordinate = ()=>{
     // Crud
     const handleCreate =  (e: React.FormEvent, formData: ICoordinate | any)=>{
         e.preventDefault();
-        console.log
     }
 
     // cruD

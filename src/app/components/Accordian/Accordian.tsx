@@ -55,7 +55,6 @@ const Accordian = () => {
     }
 
     const handleCollapse = () => {
-        console.log("handleCollapse called");
         updateMinimize((accordianState: IAccordian) => !accordianState.minimized)
     }
 
