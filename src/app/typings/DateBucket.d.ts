@@ -28,5 +28,10 @@ export enum Province {
     NL = 'NL',
     ON = 'ON',
     QC = 'QC',
-    SK = 'SK'
-}
+    SK = 'SK',
+    PEI = 'PEI',
+    NS = 'NS',
+    YT = 'YT',
+    NU = 'NU',
+    NWT = 'NWT'
+};
