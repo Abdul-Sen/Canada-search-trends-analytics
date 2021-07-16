@@ -31,8 +31,9 @@ const AccordianProvider: FC<React.ReactNode> = ( { children } ) => {
     }
 
     const calcDays = (from: Date, to: Date) : number => {
-        let temp: number = to.getTime() - from.getTime();
-        temp =  temp/(1000* 60 * 60 * 24)
+        let temp: number = Math.round(to.getTime()) - Math.round(from.getTime());
+        temp = Math.round( temp/(1000* 60 * 60 * 24));
+
         return temp;
       }
 
@@ -61,6 +62,7 @@ const AccordianProvider: FC<React.ReactNode> = ( { children } ) => {
               counterTicks: 0,
               counterTwo: 0,
               play: !prevAccordianState.play,
+              from: new Date(prevAccordianState.currentDate)
             };
           }
 
