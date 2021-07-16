@@ -1532,9 +1532,9 @@
                 "darkColor": "8F6400"
             },
             {
-                "query": "null",
+                "query": "No Data Available",
                 "province": "NB",
-                "lightColor": "F2CBDF",
+                "lightColor": "C5EFFF",
                 "darkColor": "CE3B87"
             },
             {
@@ -1556,9 +1556,9 @@
                 "darkColor": "808023"
             },
             {
-                "query": "null",
+                "query": "No Data Available",
                 "province": "SK",
-                "lightColor": "F2CBDF",
+                "lightColor": "C5EFFF",
                 "darkColor": "CE3B87"
             }
         ],
@@ -10513,8 +10513,8 @@
             },
             {
                 "province": "NL",
-                "query": "null",
-                "lightColor": "F2CBDF",
+                "query": "No Data Available",
+                "lightColor": "C5EFFF",
                 "darkColor": "CE3B87"
             },
             {
