@@ -38,7 +38,7 @@ const RSMap = () => {
     },
     hover: {
       fill: "#F53",
-      outline: "none"
+      outline: "none",
     },
     pressed: {
       fill: "#E42",
@@ -94,20 +94,41 @@ const RSMap = () => {
 
   const GetColor = (province: Province) => {
 
-    let dq: DateQuery | undefined = currentDateBucket.data.find((val: DateQuery) => {
-      if (val.province == province) {
-        return true;
-      }
-
-    });
-    return theme.AppTheme == "Light" ? dq?.lightColor : dq?.darkColor;
+    if(FilterCheck(province))
+    {
+      let dq: DateQuery | undefined = currentDateBucket.data.find((val: DateQuery) => {
+        if (val.province == province) {
+          return true;
+        }
+      });
+      return `#` + (theme.AppTheme == "Light" ? dq?.lightColor : dq?.darkColor);  
+    }
+    else {
+      return geoStyle.default.fill;
+    }
   }
+  
   const RenderGeographies = ({ geographies }: any) => {
     return geographies.map((geo: any) => {
-      GetColor(geo.properties.name as Province);
-      return <Geography key={geo.rsmKey} name={geo.properties.name} geography={geo} style={{ ...geoStyle, default: { fill: `#${GetColor(geo.properties.name as Province)}` } }} className="geography" >
+      return <Geography key={geo.rsmKey} name={geo.properties.name} geography={geo} style={{ ...geoStyle, default: { fill: `${ GetColor(geo.properties.name as Province)}` } }} className="geography" >
       </Geography>
     })
+  }
+
+  /**
+   * checks if current data point is allowed to render based on accordian filter
+   * @param province {{Province}} 
+   */
+  const FilterCheck = (province: Province) : boolean => {
+
+    let index : number = accordianState.province.findIndex((val : OptionType, ind : number) => {
+      if(val.value as Province == province)
+      {
+        return true;
+      }
+    });
+
+    return index == -1?  false : true;
   }
 
   return (
@@ -133,7 +154,7 @@ const RSMap = () => {
               if (proviceData.province == Province.NB) {
 
                 return (
-                  <Annotation
+                  FilterCheck(proviceData.province) &&  <Annotation
                     subject={MarkerCoordinate(Province.NB)}
                     dx={-3}
                     dy={13}
@@ -151,11 +172,11 @@ const RSMap = () => {
                 )
               }
               return (
-                <Marker coordinates={MarkerCoordinate(proviceData.province)} fill="#777" key={index}>
-                  <text textAnchor="middle" fill="DarkBlue" fontSize={3}>
-                    {proviceData.query}
-                  </text>
-                </Marker>
+               FilterCheck(proviceData.province) && <Marker coordinates={MarkerCoordinate(proviceData.province)} fill="#777" key={index}>
+                <text textAnchor="middle" fill="DarkBlue" fontSize={3}>
+                  {proviceData.query}
+                </text>
+              </Marker>
               );
             })}
             <React.Fragment>

@@ -4,7 +4,7 @@ interface IAccordian {
     visibleDateCue: boolean | string,
     from: Date,
     to: Date,
-    province: List<string>,
+    province: OptionType [],
     playSpeed: number,
     play: boolean,
     currentDate: Date,
@@ -20,3 +20,9 @@ type AccordianContextType = {
     updateAccordian: (newState: IAccordian) => void,
     getAccordianState: () => IAccordian
 }
+
+type OptionType = {
+    value: string;
+    label: string;
+  };
+  

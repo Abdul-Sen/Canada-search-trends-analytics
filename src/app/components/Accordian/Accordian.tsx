@@ -7,10 +7,10 @@ import Select, { ActionMeta, OptionsType, OptionTypeBase, ValueType } from 'reac
 import { useState } from "react";
 import { useEffect } from "react";
 
-const options: any[] = [
+const options: any = [
     { value: 'AB', label: 'Alberta'},
     { value: 'BC', label: 'British Colombia' },
-    { value: 'MB', label: 'Manitoba' },
+    { value: 'MA', label: 'Manitoba' },
     { value: 'NB', label: 'New Brunswick' },
     { value: 'NL', label: 'Newfoundland and Labrador'},
     { value: 'NS', label: 'Nova Scotia'},
@@ -81,13 +81,14 @@ const Accordian = () => {
         });
     }
 
-    function handleChange(value: ValueType<OptionTypeBase, boolean>, actionMeta: ActionMeta<OptionTypeBase>)
+    function handleChange(value: ValueType<OptionType, boolean>)
     {
         updateAccordian({
             ...accordianState,
-            province: value
+            province: value as OptionType[]
         });
     }
+
     return (
         <>
             <div className="accrordian-box">
@@ -114,7 +115,7 @@ const Accordian = () => {
                     <div id="province">
                         <p>Province</p>&nbsp;<Select name="provinceSelect" className='react-select-container' classNamePrefix="react-select" onChange={handleChange} isMulti isSearchable closeMenuOnSelect={false} options={options} />               
                     </div>
-                    <div id="speed" >
+                    <div id="speed">
                         <p style={{ display: "inline" }}>Play Speed</p>
                         <div style={{ display: "inline" }}>
                             <input name="playSpeed" value={accordianState.playSpeed} onChange={handleFormUpdate} type="range" min="0.25" max="2.75" step="0.1" />
