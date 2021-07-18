@@ -24,5 +24,6 @@ type AccordianContextType = {
 type OptionType = {
     value: string;
     label: string;
+    isDisabled: boolean;
   };
   
