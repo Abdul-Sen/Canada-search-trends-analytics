@@ -121,6 +121,12 @@ const RSMap = () => {
    */
   const FilterCheck = (province: Province) : boolean => {
     
+    // check if province is not one of which that do not have data
+    if([Province.NWT, Province.YT, Province.NU].includes(province))
+    {
+      return false;
+    }
+
     let index : number = accordianState.province.findIndex((val : OptionType, ind : number) => {
       if(val.value as Province == province || val.value == "ALL")
       {
