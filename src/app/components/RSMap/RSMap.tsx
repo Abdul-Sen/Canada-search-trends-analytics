@@ -110,7 +110,7 @@ const RSMap = () => {
   
   const RenderGeographies = ({ geographies }: any) => {
     return geographies.map((geo: any) => {
-      return <Geography key={geo.rsmKey} name={geo.properties.name} geography={geo} style={{ ...geoStyle, default: { fill: `${ GetColor(geo.properties.name as Province)}` } }} className="geography" >
+      return <Geography key={geo.rsmKey} name={geo.properties.name} geography={geo} style={{ ...geoStyle, default: { fill: `${ GetColor(geo.properties.name as Province)}`, outline: "none" } }} className="geography" >
       </Geography>
     })
   }
@@ -120,9 +120,9 @@ const RSMap = () => {
    * @param province {{Province}} 
    */
   const FilterCheck = (province: Province) : boolean => {
-
+    
     let index : number = accordianState.province.findIndex((val : OptionType, ind : number) => {
-      if(val.value as Province == province)
+      if(val.value as Province == province || val.value == "ALL")
       {
         return true;
       }

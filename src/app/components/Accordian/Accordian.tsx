@@ -3,21 +3,8 @@ import * as React from "react";
 import { AccordianContext } from '../../context/AccordianContext'
 import { IoIosArrowRoundBack, IoIosArrowRoundForward } from 'react-icons/io';
 import { RiPauseCircleLine, RiPlayCircleLine } from 'react-icons/ri';
-import Select, { ActionMeta, OptionsType, OptionTypeBase, ValueType } from 'react-select';  
-import { useState } from "react";
 import { useEffect } from "react";
-
-const options: any = [
-    { value: 'AB', label: 'Alberta'},
-    { value: 'BC', label: 'British Colombia' },
-    { value: 'MA', label: 'Manitoba' },
-    { value: 'NB', label: 'New Brunswick' },
-    { value: 'NL', label: 'Newfoundland and Labrador'},
-    { value: 'NS', label: 'Nova Scotia'},
-    { value: 'ON', label: 'Ontario' },
-    { value: 'QC', label: 'Quebec'},
-    { value: 'SK', label: 'Saskatchewan' },
-];
+import ProvinceSelect from "../ProvinceSelect";
 
 const Accordian = () => {
 
@@ -81,14 +68,6 @@ const Accordian = () => {
         });
     }
 
-    function handleChange(value: ValueType<OptionType, boolean>)
-    {
-        updateAccordian({
-            ...accordianState,
-            province: value as OptionType[]
-        });
-    }
-
     return (
         <>
             <div className="accrordian-box">
@@ -113,7 +92,7 @@ const Accordian = () => {
                         </div>
                     </div>
                     <div id="province">
-                        <p>Province</p>&nbsp;<Select name="provinceSelect" className='react-select-container' classNamePrefix="react-select" onChange={handleChange} isMulti isSearchable closeMenuOnSelect={false} options={options} />               
+                        <p>Province</p>&nbsp;<ProvinceSelect />
                     </div>
                     <div id="speed">
                         <p style={{ display: "inline" }}>Play Speed</p>
