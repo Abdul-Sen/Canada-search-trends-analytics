@@ -28,6 +28,11 @@ const Accordian = () => {
 
     useEffect(()=> {
         tickInterval();
+        console.log(accordianState.counterTicks);
+        if(accordianState.counterTicks <= 0 && accordianState.play == true)
+        {
+            updatePlayState();
+        }
     },[accordianState.counterTicks]);
 
 
