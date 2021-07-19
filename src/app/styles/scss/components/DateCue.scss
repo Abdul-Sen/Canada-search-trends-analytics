@@ -10,6 +10,11 @@
     0 1px 17.9px rgba(0, 0, 0, 0.072), 0 1px 33.4px rgba(0, 0, 0, 0.086);
 
     backdrop-filter: blur(15px);
+    @supports not(backdrop-filter: blur(15px))
+    {
+        background-color: rgba(255, 255, 255, .9);
+    }
+    
     text-align: center;
 }
 
@@ -18,5 +23,12 @@
     font-family: $roboto-slab;
     @include themify($themes) {
         color: themed("textColor");
+    }
+
+    @supports not(backdrop-filter: blur(15px))
+    {
+        @include themify($themes) {
+            color: themed("polyFillTextColor");
+        }
     }
 }
