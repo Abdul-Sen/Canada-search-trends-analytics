@@ -84,11 +84,11 @@ const Accordian = () => {
                     <div id="dateRange">
                         <div id="from" style={{ display: "inline", }} >
                             <p style={{ display: "inline" }}>From</p>  &nbsp;
-                        <input name="from" readOnly={accordianState.play? true:false} style={accordianState.play? {backgroundColor: "#CDCDCD"} : {} } onChange={handleFormUpdate} type="date" value={accordianState.from.toISOString().split('T')[0]} min="2020-01-01" max={accordianState.to.toISOString().split('T')[0]} />
+                        <input name="from" required readOnly={accordianState.play? true:false} style={accordianState.play? {backgroundColor: "#CDCDCD"} : {} } onChange={handleFormUpdate} type="date" value={accordianState.from.toISOString().split('T')[0]} min="2020-01-01" max={accordianState.to.toISOString().split('T')[0]} />
                         </div>
                         <div id="to" style={{ display: "inline", paddingLeft: "30px" }}>
                             <p style={{ display: "inline" }}>To</p> &nbsp;
-                        <input name="to" readOnly={accordianState.play? true:false} style={accordianState.play? {backgroundColor: "#CDCDCD"} : {} } onChange={handleFormUpdate} type="date" value={accordianState.to.toISOString().split('T')[0]} min={accordianState.from.toISOString().split('T')[0]} max="2020-12-31" />
+                        <input name="to" required readOnly={accordianState.play? true:false} style={accordianState.play? {backgroundColor: "#CDCDCD"} : {} } onChange={handleFormUpdate} type="date" value={accordianState.to.toISOString().split('T')[0]} min={accordianState.from.toISOString().split('T')[0]} max="2020-12-31" />
                         </div>
                     </div>
                     <div id="province">
