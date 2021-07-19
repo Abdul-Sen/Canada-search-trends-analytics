@@ -26,3 +26,15 @@
         fill: themed("mapFill");
     }
 }
+
+.map-text {
+        @include themify($themes) {
+            fill: themed("mapText");
+        }
+}
+
+.rsm-geographies {
+    @include themify($themes) {
+        stroke: themed("mapStrokeColor");
+    }
+}

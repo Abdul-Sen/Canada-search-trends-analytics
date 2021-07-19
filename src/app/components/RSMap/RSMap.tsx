@@ -104,7 +104,7 @@ const RSMap = () => {
       return `#` + (theme.AppTheme == "Light" ? dq?.lightColor : dq?.darkColor);  
     }
     else {
-      return geoStyle.default.fill;
+      return theme.AppTheme == "Light"? geoStyle.default.fill : "#9e9e9e"; // dis hardcoded yuck
     }
   }
   
@@ -142,14 +142,14 @@ const RSMap = () => {
       <div style={{ maxWidth: "100%", height: "100%" }}>
         <ComposableMap {...composableMapProps} style={{ width: "100%", height: "100%" }}>
           <ZoomableGroup {...zoomProps}>
-            <Geographies geography={data} stroke="#949494" strokeWidth={0.2}>
+            <Geographies geography={data} className={"rsm-geographies"} strokeWidth={0.2}>
               {RenderGeographies}
             </Geographies>
 
             {[Province.NWT, Province.YT, Province.NU].map((province: Province) => {
               return (
                 <Marker coordinates={MarkerCoordinate(province)} fill="#777">
-                  <text textAnchor="middle" fill="DarkBlue" fontSize={3}>
+                  <text textAnchor="middle" fontSize={3} className="map-text">
                     {"No Data Available"}
                   </text>
                 </Marker>
@@ -166,12 +166,12 @@ const RSMap = () => {
                     dy={13}
                     curve={-1}
                     connectorProps={{
-                      stroke: "darkblue",
+                      stroke: "black",
                       strokeWidth: 0.3,
                       strokeLinecap: "round",
 
                     }}>
-                    <text x="6" y="2" textAnchor="end" fontSize={3} alignmentBaseline="middle" fill="darkblue">
+                    <text x="6" y="3" textAnchor="end" fontSize={3} alignmentBaseline="middle" className="map-text">
                       {proviceData.query}
                     </text>
                   </Annotation>
@@ -179,7 +179,7 @@ const RSMap = () => {
               }
               return (
                FilterCheck(proviceData.province) && <Marker coordinates={MarkerCoordinate(proviceData.province)} fill="#777" key={index}>
-                <text textAnchor="middle" fill="DarkBlue" fontSize={3}>
+                <text textAnchor="middle" className="map-text" fontSize={3}>
                   {proviceData.query}
                 </text>
               </Marker>
