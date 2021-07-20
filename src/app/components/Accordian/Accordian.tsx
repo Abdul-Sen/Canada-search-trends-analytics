@@ -28,7 +28,6 @@ const Accordian = () => {
 
     useEffect(()=> {
         tickInterval();
-        console.log(accordianState.counterTicks);
         if(accordianState.counterTicks <= 0 && accordianState.play == true)
         {
             updatePlayState();
@@ -51,25 +50,25 @@ const Accordian = () => {
     }
 
     const handleFormUpdate = (e: React.BaseSyntheticEvent) => {
-        
-        if (e.target.name == "visibleDateCue") {
-            e.target.value == "checked" ? e.target.value = true : e.target.value = false;
-        }
-        
-        let payload :any = e.target.value;
-        switch(e.target.name)
+        let value : any = e.target.value;
+        let name: string = e.target.name;
+        let payload :any;
+
+        switch(name)
         {
             case "from":
-                payload = new Date(e.target.value);
+                payload = new Date(value);
                 break;
             case "to":
-                payload = new Date(e.target.value);
+                payload = new Date(value);
                 break;
+            case "visibleDateCue":
+                payload = e.target.checked? true : false;
         }
 
         updateAccordian({
             ...accordianState,
-            [e.target.name]: payload
+            [name]: payload
         });
     }
 
@@ -83,7 +82,7 @@ const Accordian = () => {
                 {accordianState.minimized == false && <>
                     <div id="dailyDate" >
                         <div>
-                            <h6 style={{ display: "inline", fontSize: "1.3rem" }}>Show Daily date</h6> <input name="visibleDateCue" onClick={handleFormUpdate} type="checkbox" value={accordianState.visibleDateCue ? "checked" : ""} style={{ display: "inline-block" }} />
+                            <h6 style={{ display: "inline", fontSize: "1.3rem" }}>Show Daily date</h6> <input name="visibleDateCue" onChange={handleFormUpdate} type="checkbox" style={{ display: "inline-block" }} checked={accordianState.visibleDateCue} />
                         </div>
                     </div>
                     <div id="dateRange">

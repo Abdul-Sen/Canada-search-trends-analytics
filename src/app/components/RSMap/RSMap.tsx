@@ -146,9 +146,9 @@ const RSMap = () => {
               {RenderGeographies}
             </Geographies>
 
-            {[Province.NWT, Province.YT, Province.NU].map((province: Province) => {
+            {[Province.NWT, Province.YT, Province.NU].map((province: Province,index : number) => {
               return (
-                <Marker coordinates={MarkerCoordinate(province)} fill="#777">
+                <Marker coordinates={MarkerCoordinate(province)} fill="#777" key={index}>
                   <text textAnchor="middle" fontSize={3} className="map-text">
                     {"No Data Available"}
                   </text>
@@ -185,8 +185,6 @@ const RSMap = () => {
               </Marker>
               );
             })}
-            <React.Fragment>
-            </React.Fragment>
           </ZoomableGroup>
         </ComposableMap>
       </div>

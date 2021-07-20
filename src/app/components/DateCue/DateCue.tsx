@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useEffect } from "react";
 import { useContext } from "react";
 import { AccordianContext } from '../../context/AccordianContext'
 
@@ -11,13 +10,26 @@ const DateCue = ()=> {
         return myDate;
     }
     
+    const jsx = function() {
+        if(accordianState.visibleDateCue)
+        {
+            return (
+                <div id="DateCueContainer">
+                <span id="DateCueValue">
+                    
+                {formattedDate()}
+                </span>
+            <br/>
+            </div>
+            );
+        }
+        else {
+            return (<React.Fragment></React.Fragment>)
+        }
+    }
+
     return (
-        <div id="DateCueContainer">
-            <span id="DateCueValue">
-            {formattedDate()}
-            </span>
-        <br/>
-        </div>
+        jsx()
     );
 }
 

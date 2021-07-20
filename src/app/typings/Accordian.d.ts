@@ -1,7 +1,7 @@
 
 interface IAccordian {
     minimized: boolean,
-    visibleDateCue: boolean | string,
+    visibleDateCue: boolean,
     from: Date,
     to: Date,
     province: OptionType [],
@@ -11,7 +11,6 @@ interface IAccordian {
     counterTicks: number,
     counterTwo: number
 };
-
 
 type AccordianContextType = {
     accordianState: IAccordian,

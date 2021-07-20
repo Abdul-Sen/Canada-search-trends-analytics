@@ -72,9 +72,9 @@ const AccordianProvider: FC<React.ReactNode> = ( { children } ) => {
 
       const updateAccordian = (newState:IAccordian)=> {
         setAccordianState((prevState) : IAccordian => ({
-            ...prevState,
-            ...newState
-        }));
+          ...prevState,
+          ...newState
+      }));
     }
       
     const getAccordianState = () : IAccordian => {
