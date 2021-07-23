@@ -7,7 +7,7 @@ const DEFAULT_ACCORDIAN: IAccordian = {
     to: new Date("2020-12-31"),
     play: false,
     playSpeed: 1.25,
-    province: [],
+    province: [{ value: 'ALL', label: 'All', isDisabled: false }],
     visibleDateCue: true,
     currentDate: new Date("2020-01-01"),
     counterTicks: 0,
