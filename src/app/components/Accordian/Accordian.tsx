@@ -64,6 +64,8 @@ const Accordian = () => {
                 break;
             case "visibleDateCue":
                 payload = e.target.checked? true : false;
+            case "playSpeed":
+                payload = value;
         }
 
         updateAccordian({
