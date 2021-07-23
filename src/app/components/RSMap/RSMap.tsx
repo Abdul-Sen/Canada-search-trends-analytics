@@ -169,8 +169,9 @@ const RSMap = () => {
                       stroke: "black",
                       strokeWidth: 0.3,
                       strokeLinecap: "round",
-
-                    }}>
+                    }}
+                    key={index}
+                    >
                     <text x="6" y="3" textAnchor="end" fontSize={3} alignmentBaseline="middle" className="map-text">
                       {proviceData.query}
                     </text>
