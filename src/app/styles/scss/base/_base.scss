@@ -12,3 +12,7 @@ body {
 text {
     font-family: Roboto, 'Segoe UI',  sans-serif, Oxygen;
 }
+
+::selection {
+    user-select: none;
+}
