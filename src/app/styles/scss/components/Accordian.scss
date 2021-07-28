@@ -58,6 +58,9 @@
     margin: 1rem 0.5rem 2rem 2rem;
 }
 
+#collapsible > div {
+    margin: 1rem 0.5rem 2rem 2rem;
+}
 // big long range line
 input[type=range]::-webkit-slider-runnable-track {
 	width: 100%;
@@ -78,6 +81,12 @@ input[type=range]::-webkit-slider-thumb {
 	margin-top: -3px;
 }
 
+// accrordian-box
+
+#collapsible {
+    display: flex;
+    flex-direction: column;
+}
 
 // multi selector
 .react-select-province__indicators {

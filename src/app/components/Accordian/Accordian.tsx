@@ -64,8 +64,10 @@ const Accordian = () => {
                 break;
             case "visibleDateCue":
                 payload = e.target.checked? true : false;
+                break;
             case "playSpeed":
                 payload = value;
+                break;
         }
 
         updateAccordian({
@@ -73,7 +75,7 @@ const Accordian = () => {
             [name]: payload
         });
     }
-
+    
     return (
         <>
             <div className="accrordian-box">
@@ -81,7 +83,7 @@ const Accordian = () => {
                 <div id="collapse" onClick={handleCollapse}>
                     {accordianState.minimized == true ? <IoIosArrowRoundForward size={40} /> : <IoIosArrowRoundBack size={40} />}
                 </div>
-                {accordianState.minimized == false && <>
+                {accordianState.minimized == false && <div id="collapsible">
                     <div id="dailyDate" >
                         <div>
                             <h6 style={{ display: "inline", fontSize: "1.3rem" }}>Show Daily date</h6> <input name="visibleDateCue" onChange={handleFormUpdate} type="checkbox" style={{ display: "inline-block" }} checked={accordianState.visibleDateCue} />
@@ -111,7 +113,7 @@ const Accordian = () => {
                     <div id="begin">
                             {accordianState.play == true? <RiPauseCircleLine size={70} onClick={updatePlayState} /> : <RiPlayCircleLine size={70} onClick={updatePlayState} />}
                     </div>
-                </>}
+                    </div>}
             </div>
         </>
     );
