@@ -51,8 +51,31 @@
         margin-top: auto;
         cursor: pointer;
     }
-    
+    animation: 0.5s ease-out 0s 1 slideInFromLeft;
 }
+
+.accrordian-box-collapsed {
+    @extend .accrordian-box;
+    animation: 0.5s ease-out 0s 1 closeAccordian;
+}
+
+@keyframes closeAccordian {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes slideInFromRight {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
 
 .accrordian-box > div {
     margin: 1rem 0.5rem 2rem 2rem;
@@ -86,7 +109,23 @@ input[type=range]::-webkit-slider-thumb {
 #collapsible {
     display: flex;
     flex-direction: column;
+    animation: 0.5s ease-out 0s 1 slideInFromLeft;
 }
+
+#collapsible-hide {
+    @extend #collapsible;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+@keyframes slideInFromLeft {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
 
 // multi selector
 .react-select-province__indicators {

@@ -45,8 +45,27 @@ const Accordian = () => {
         });
     }
 
+    // used for animaiton purposes on collapse and un-collapse
+    const [collapseState, setCollapseState] = React.useState<string>(("collapsible"));
+
     const handleCollapse = () => {
-        updateMinimize((accordianState: IAccordian) => !accordianState.minimized)
+        setCollapseState(() => {
+            if(accordianState.minimized)
+            {
+                return "collapsible";
+            }
+            return "collapsible-hide";
+        })
+
+        if(collapseState == "collapsible")
+        {
+            setTimeout(()=>{
+                updateMinimize((accordianState: IAccordian) => !accordianState.minimized);
+            },500);
+        }
+        else {
+            updateMinimize((accordianState: IAccordian) => !accordianState.minimized);
+        }
     }
 
     const handleFormUpdate = (e: React.BaseSyntheticEvent) => {
@@ -78,12 +97,12 @@ const Accordian = () => {
     
     return (
         <>
-            <div className="accrordian-box">
+            <div className= {collapseState == "collapsible-hide"? "accrordian-box-collapsed" : "accrordian-box" }>
 
                 <div id="collapse" onClick={handleCollapse}>
                     {accordianState.minimized == true ? <IoIosArrowRoundForward size={40} /> : <IoIosArrowRoundBack size={40} />}
                 </div>
-                {accordianState.minimized == false && <div id="collapsible">
+                {accordianState.minimized == false && <div id={collapseState}>
                     <div id="dailyDate" >
                         <div>
                             <h6 style={{ display: "inline", fontSize: "1.3rem" }}>Show Daily date</h6> <input name="visibleDateCue" onChange={handleFormUpdate} type="checkbox" style={{ display: "inline-block" }} checked={accordianState.visibleDateCue} />
