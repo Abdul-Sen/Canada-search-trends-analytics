@@ -127,33 +127,7 @@ input[type=range]::-webkit-slider-thumb {
     }
   }
 
-// multi selector
-.react-select-province__indicators {
-    min-height: 35px !important;
-}
 
-.react-select-province-container {
-    min-height: 35px;
-    width: 100%;
-    align-self: center;
-    background-color: transparent;
-}
-
-.react-select-province__menu {
-    font-size: small;    
-}
-
-.react-select-province__control {
-    min-height: 35px !important;   
-    background-color: transparent !important;
-    border-width: 2px !important;
-}
-
-.react-select-province__value-container {
-    max-width: 300px;
-    background-color: transparent;
- 
-}
 #province {
     display: flex;
     flex-direction: row;
