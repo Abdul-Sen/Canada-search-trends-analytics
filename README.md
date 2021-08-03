@@ -1,6 +1,6 @@
-## What Canada Searched in 2020
+## What Canadians Searched for in 2020
 
-This webapp helps analyze various top search results throughout the entirety of 2020
+This webapp helps analyze various top search results throughout the entirety of 2020.
 
 ## Project Structure
 
